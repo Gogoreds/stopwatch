@@ -4,8 +4,6 @@ import axios from "axios";
 
 import { CiPlay1, CiPause1, CiBookmark, CiRedo } from "react-icons/ci";
 
-// CiPlay1 CiPause1 CiBookmark CiRedo
-
 export default function Stopwatch() {
   const [timer, setTimer] = useState(0);
   const [isActive, setIsActive] = useState(false);
@@ -16,7 +14,7 @@ export default function Stopwatch() {
     if (isActive) {
       interval = setInterval(() => {
         setTimer((timer) => timer + 1);
-      }, 10); // Updated to count in 'milliseconds'
+      }, 10);
     } else {
       clearInterval(interval);
     }
@@ -63,16 +61,16 @@ export default function Stopwatch() {
       </div>
       <div className="flex justify-center pt-8 space-x-24">
         <button onClick={handleStart}>
-          <CiPlay1 className="h-10 w-10" />
+          <CiPlay1 className="h-10 w-5" />
         </button>
         <button onClick={handleStop}>
-          <CiPause1 className="h-10 w-10" />
+          <CiPause1 className="h-10 w-5" />
         </button>
         <button onClick={handleSave}>
-          <CiBookmark className="h-10 w-10" />
+          <CiBookmark className="h-10 w-5" />
         </button>
         <button onClick={handleReset}>
-          <CiRedo className="h-10 w-10" />
+          <CiRedo className="h-10 w-5" />
         </button>
       </div>
       <h2 className="pt-8">Saved Times</h2>
