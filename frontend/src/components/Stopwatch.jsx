@@ -52,12 +52,12 @@ export default function Stopwatch() {
 
   return (
     <main>
-      <div className="bg-slate-500 border-8 border-slate-600 m-4 p-2 rounded-xl h-36 w-auto flex items-center justify-center shadow-lg">
+      <div className="bg-slate-500 border-8 border-slate-600 px-4 p-2 rounded-xl h-36 w-auto flex items-center justify-center shadow-lg">
         <h1 className="timer font-digital text-7xl text-emerald-500">
           {formatTime()}
         </h1>
       </div>
-      <div className="flex justify-center space-x-12">
+      <div className="flex justify-center pt-8 space-x-24">
         <button onClick={handleStart}>▶️</button>
         <button onClick={handleStop}>⏹️</button>
         <button onClick={handleSave}>💾</button>
