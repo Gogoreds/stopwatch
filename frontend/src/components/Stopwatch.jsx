@@ -2,6 +2,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+import { CiPlay1, CiPause1, CiBookmark, CiRedo } from "react-icons/ci";
+
+// CiPlay1 CiPause1 CiBookmark CiRedo
+
 export default function Stopwatch() {
   const [timer, setTimer] = useState(0);
   const [isActive, setIsActive] = useState(false);
@@ -58,10 +62,18 @@ export default function Stopwatch() {
         </h1>
       </div>
       <div className="flex justify-center pt-8 space-x-24">
-        <button onClick={handleStart}>▶️</button>
-        <button onClick={handleStop}>⏹️</button>
-        <button onClick={handleSave}>💾</button>
-        <button onClick={handleReset}>🔄</button>
+        <button onClick={handleStart}>
+          <CiPlay1 className="h-10 w-10" />
+        </button>
+        <button onClick={handleStop}>
+          <CiPause1 className="h-10 w-10" />
+        </button>
+        <button onClick={handleSave}>
+          <CiBookmark className="h-10 w-10" />
+        </button>
+        <button onClick={handleReset}>
+          <CiRedo className="h-10 w-10" />
+        </button>
       </div>
       <h2 className="pt-8">Saved Times</h2>
       <div className="flex justify-center">
