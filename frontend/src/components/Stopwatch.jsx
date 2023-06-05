@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+import Moments from "./Moments";
+
 import { CiPlay1, CiPause1, CiBookmark, CiRedo } from "react-icons/ci";
 
 export default function Stopwatch() {
@@ -73,13 +75,8 @@ export default function Stopwatch() {
           <CiRedo className="h-10 w-5" />
         </button>
       </div>
-      <h2 className="pt-8">Saved Times</h2>
       <div className="flex justify-center">
-        <ul>
-          {savedTimes.map((time, index) => (
-            <li key={index}>{time}</li>
-          ))}
-        </ul>
+        <Moments />
       </div>
     </main>
   );
