@@ -1,11 +1,9 @@
 const express = require("express");
 const app = express();
-const port = 3000;
+const savedTimes = require("./routes/savedTimes");
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
+app.use(express.json());
+app.use("/api/savedTimes", savedTimes);
 
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
-});
+const port = process.env.PORT || 5000;
+app.listen(port, () => console.log(`Listening on port ${port}`));

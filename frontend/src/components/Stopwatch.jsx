@@ -33,7 +33,7 @@ export default function Stopwatch() {
 
   const handleSave = async () => {
     setIsActive(false);
-    await axios.post("/api/Moments", { time: timer });
+    await axios.post("/api/savedTimes", { time: timer });
     setSavedTimes([...savedTimes, timer]);
     setTimer(0);
   };
