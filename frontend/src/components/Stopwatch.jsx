@@ -33,7 +33,7 @@ export default function Stopwatch() {
 
   const handleSave = async () => {
     setIsActive(false);
-    await axios.post("/api/savedTimes", { time: timer });
+    await axios.post("http://localhost:5000/api/savedTimes/", { time: timer });
     setSavedTimes([...savedTimes, timer]);
     setTimer(0);
   };
@@ -44,14 +44,17 @@ export default function Stopwatch() {
   };
 
   const formatTime = () => {
-    const getMilliseconds = `00${timer % 100}`.slice(-2);
-    const seconds = Math.floor(timer / 100);
-    const getSeconds = `0${seconds % 60}`.slice(-2);
-    const minutes = Math.floor(timer / 6000);
-    const getMinutes = `0${minutes % 60}`.slice(-2);
-    const getHours = `0${Math.floor(timer / 360000)}`.slice(-2);
+    let milliseconds = Math.floor(timer % 100);
+    let seconds = Math.floor((timer / 100) % 60);
+    let minutes = Math.floor((timer / (100 * 60)) % 60);
+    let hours = Math.floor((timer / (100 * 60 * 60)) % 24);
 
-    return `${getHours} : ${getMinutes} : ${getSeconds} : ${getMilliseconds}`;
+    hours = hours < 10 ? "0" + hours : hours;
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+    milliseconds = milliseconds < 10 ? "0" + milliseconds : milliseconds;
+
+    return `${hours}:${minutes}:${seconds}:${milliseconds}`;
   };
 
   return (
