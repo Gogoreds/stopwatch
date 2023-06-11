@@ -1,18 +1,6 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
 
-export default function Moments() {
-  const [savedTimes, setSavedTimes] = useState([]);
-
-  useEffect(() => {
-    const fetchSavedTimes = async () => {
-      const res = await axios.get("http://localhost:5000/api/savedTimes");
-      setSavedTimes(res.data);
-    };
-    fetchSavedTimes();
-  }, []);
-
+export default function Moments({ savedTimes }) {
   const formatTime = (time) => {
     let milliseconds = Math.floor(time % 100);
     let seconds = Math.floor((time / 100) % 60);

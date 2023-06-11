@@ -3,13 +3,20 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import Moments from "./Moments";
-
 import { CiPlay1, CiPause1, CiBookmark, CiRedo } from "react-icons/ci";
 
 export default function Stopwatch() {
   const [timer, setTimer] = useState(0);
   const [isActive, setIsActive] = useState(false);
   const [savedTimes, setSavedTimes] = useState([]);
+
+  useEffect(() => {
+    const fetchSavedTimes = async () => {
+      const res = await axios.get("http://localhost:5000/api/savedTimes");
+      setSavedTimes(res.data);
+    };
+    fetchSavedTimes();
+  }, []);
 
   useEffect(() => {
     let interval = null;
@@ -33,8 +40,10 @@ export default function Stopwatch() {
 
   const handleSave = async () => {
     setIsActive(false);
-    await axios.post("http://localhost:5000/api/savedTimes/", { time: timer });
-    setSavedTimes([...savedTimes, timer]);
+    const res = await axios.post("http://localhost:5000/api/savedTimes/", {
+      time: timer,
+    });
+    setSavedTimes((prev) => [...prev, res.data]);
     setTimer(0);
   };
 
@@ -79,7 +88,7 @@ export default function Stopwatch() {
         </button>
       </div>
       <div className="flex justify-center">
-        <Moments />
+        <Moments savedTimes={savedTimes} />
       </div>
     </main>
   );
